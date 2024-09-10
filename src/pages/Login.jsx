@@ -10,8 +10,7 @@ const Login = () => {
   const handleLogin = async (formData) => {
     try {
       const response = await login(formData);
-      const user = response.data;
-      setUser(user);
+      setUser(response);
       navigate("/");
       alert("로그인에 성공했습니다.");
     } catch (error) {
