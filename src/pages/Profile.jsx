@@ -14,7 +14,7 @@ const Profile = () => {
     e.preventDefault();
     try {
       const formData = { nickname }; // 수정된 닉네임 데이터 준비
-      const updatedUser = await updateProfile(formData); // 서버에 업데이트 요청
+      const updatedUser = await updateProfile(formData, user.accessToken); // 서버에 업데이트 요청
       setUser(updatedUser); // 상태에 업데이트된 유저 정보 반영
       alert("프로필이 성공적으로 업데이트되었습니다.");
     } catch (error) {
