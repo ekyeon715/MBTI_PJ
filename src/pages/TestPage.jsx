@@ -1,5 +1,5 @@
 import TestForm from "../components/TestForm";
-import { calculateMBTI } from "../utils/mbtiCalculator";
+import calculateMBTI from "../utils/mbtiCalculator";
 import { createTestResult } from "../api/testResults";
 import { useNavigate } from "react-router-dom";
 import useUserStore from "../zustand/useUserStore";
