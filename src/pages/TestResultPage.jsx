@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { getTestResults } from "../api/testResults";
+import { deleteTestResult, getTestResults } from "../api/testResults";
 import TestResultList from "../components/TestResultList";
-import useUserStore from "../zustand/useUserStore";
 
 const TestResult = () => {
-  const { user } = useUserStore();
   const [results, setResults] = useState([]);
 
   const fetchResults = async () => {
@@ -16,12 +14,21 @@ const TestResult = () => {
     fetchResults();
   }, []);
 
-  const handleUpdate = () => {
-    fetchResults();
+  const handleUpdate = async () => {
+    try {
+      await fetchResults();
+    } catch (error) {
+      alert("결과를 업데이트할 수 없습니다.");
+    }
   };
 
-  const handleDelete = () => {
-    fetchResults();
+  const handleDelete = async (id) => {
+    try {
+      await deleteTestResult(id);
+      fetchResults();
+    } catch (error) {
+      alert("오류로 인해 삭제할 수 없습니다.");
+    }
   };
 
   return (
@@ -32,7 +39,6 @@ const TestResult = () => {
         </h1>
         <TestResultList
           results={results}
-          user={user}
           onUpdate={handleUpdate}
           onDelete={handleDelete}
         />
